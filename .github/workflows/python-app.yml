@@ -38,7 +38,7 @@ jobs:
     - uses: akhileshns/heroku-deploy@v3.12.12
       with:
         heroku_api_key: ${{secrets.HEROKU_SECRET}}
-        heroku_app_name: "master-cs-yahoo-finance"
+        heroku_app_name: "mastertratadedatos1"
         heroku_email:  ${{secrets.HEROKU_EMAIL}}
         buildpack: 'heroku/python'
         usedocker: false
