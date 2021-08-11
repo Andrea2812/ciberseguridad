@@ -52,3 +52,4 @@ def get_price(ticker):
 
 if __name__ == '_main_':
     app.run()
+    
