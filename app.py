@@ -1,4 +1,4 @@
-from flask import Flask, Response
+ffrom flask import Flask, Response
 import requests
 import json
 import logging
@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 @app.route("/")
 def hello_world():
-    return "<h3><p>Hello, World!</p></h3>"
+    return "<p>Hello, World!</p>"
 
 
 @app.route("/get-price/<ticker>")
@@ -50,8 +50,5 @@ def get_price(ticker):
         app.logger.error("Exception occurred", exc_info=True)
 
 
-if __name__ == '__main__':
+if __name__ == '_main_':
     app.run()
-    
-
-        
