@@ -1,16 +1,13 @@
-from app import get_price
 
+# from app import catfact
 
-def test_get_price():
-    cocacola_price = get_price('KO').json
-    print(cocacola_price)
+# def test_catfact():
+#     fact = catfact().json
+#     print(fact)
 
-    assert cocacola_price['price'] > 0
-    assert cocacola_price['name'] == 'The Coca-Cola Company'
-    assert cocacola_price['exchange'] == 'NYSE'
-    assert cocacola_price['currency'] == 'USD'
+#     assert fact['length'] > 0
 
-    assert get_price('KSLAFSADF').status_code == 404
+def test_catfact():
+    pass
 
-
-test_get_price()
+test_catfact()
