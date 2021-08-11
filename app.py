@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return "<h3><p>Hello, World!</p></h3>"
 
 
 @app.route("/get-price/<ticker>")
@@ -50,5 +50,5 @@ def get_price(ticker):
         app.logger.error("Exception occurred", exc_info=True)
 
 
-if __name__ == '_main_':
+if __name__ == '__main__':
     app.run()
