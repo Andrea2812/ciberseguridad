@@ -3,7 +3,7 @@ import requests
 import json
 import logging
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 
 
