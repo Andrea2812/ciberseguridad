@@ -1,23 +1,32 @@
-from app import get_price
+"""Test case for PySide bug #982
+If you hover the mouse over the window, it will be fine,
+but the first time the topLevelAt is called with the cursor
+outside the window, it will segfault.
+"""
 
+# stdlib imports
+import sys
 
-def test_get_price():
-     
-    #cocacola_price = {
-    #"price":20,
-    #"name":"The Coca-Cola Company",
-    #"exchange":"NYSE",
-    #"currency":"USD",
-    #} 
-    cocacola_price = get_price('KO').json
-    print(cocacola_price)
+# Import Qt:
+from PySide import QtGui, QtCore
+# from PyQt4 import QtGui, QtCore
 
-    assert cocacola_price['price'] > 0
-    assert cocacola_price['name'] == 'The Coca-Cola Company'
-    assert cocacola_price['exchange'] == 'NYSE'
-    assert cocacola_price['currency'] == 'USD'
+def print_topLevelAt():
+    """callback to print current cursor position and return of topLevelAt"""
+    cpos = QtGui.QCursor.pos()
+    print cpos
+    # when nothing is there, PyQt returns None
+    # whereas PySide segfaults in this call:
+    print QtGui.qApp.topLevelAt(cpos)
 
-    assert get_price('KSLAFSADF').status_code == 404
-
-
-test_get_price()
+if __name__ == '__main__':
+    # create empty window, with a timer that calls topLevelAt with
+    # the current cursor position every 1s
+    app = QtGui.QApplication([])
+    window = QtGui.QMainWindow()
+    window.show()
+    timer = QtCore.QTimer()
+    timer.timeout.connect(print_topLevelAt)
+    timer.start(1000)
+    
+    app.exec_()
