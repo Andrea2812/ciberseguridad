@@ -3,7 +3,7 @@ import requests
 import json
 import logging
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 
 
@@ -12,19 +12,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
-
-@app.route("/catfact")
-def catfact():
-
-    url = "https://catfact.ninja/fact"
-    r = requests.get(url)
-    fact = r.json()
-    printable_fact = fact['fact']
-    #print to console
-    print("Did you know?: " + printable_fact)
-    return Response(json.dumps(fact))
-
+    return "<h3><p>Hello, World!</p></h3>"
 
 
 @app.route("/get-price/<ticker>")
@@ -62,5 +50,5 @@ def get_price(ticker):
         app.logger.error("Exception occurred", exc_info=True)
 
 
-if _name_ == 'main':
+if __name__ == '__main__':
     app.run()
