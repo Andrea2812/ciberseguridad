@@ -2,6 +2,13 @@ from app import get_price
 
 
 def test_get_price():
+     
+    #cocacola_price = {
+    #"price":20,
+    #"name":"The Coca-Cola Company",
+    #"exchange":"NYSE",
+    #"currency":"USD",
+    #} 
     cocacola_price = get_price('KO').json
     print(cocacola_price)
 
