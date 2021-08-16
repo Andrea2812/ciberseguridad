@@ -1,17 +1,16 @@
-name: GitHub Actions Demo
-on: [push]
-jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+from app import get_price
+
+
+def test_get_price():
+    cocacola_price = get_price('KO').json
+    print(cocacola_price)
+
+    assert cocacola_price['price'] > 0
+    assert cocacola_price['name'] == 'The Coca-Cola Company'
+    assert cocacola_price['exchange'] == 'NYSE'
+    assert cocacola_price['currency'] == 'USD'
+
+    assert get_price('KSLAFSADF').status_code == 404
+
+
+test_get_price()
